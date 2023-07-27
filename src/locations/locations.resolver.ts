@@ -29,7 +29,7 @@ export class LocationsResolver {
   }
 
   @Mutation(() => Location)
-  async updateLocation(@Args("id") id: number,@Args('updateLocationInput') updateLocationInput: updLocationDto) {
+  async updateLocation(@Args("id") id: number,@Args('updateLocationInput') updateLocationInput: updLocationDto) : Promise<LocationEntity>{
     return await this.locationsService.updateLocation(id, updateLocationInput);
   }
 

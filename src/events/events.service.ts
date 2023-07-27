@@ -68,14 +68,53 @@ export class EventsService {
         return await this.entityManager.save(newEvent)
     }
 
-    async updateEvent(id: number, event: updEventsDto): Promise<EventsEntity | string>{
-        const updateEvent = await this.eventsRepo.update(id, event)
-        if (updateEvent){
-        return await this.eventsRepo.findOne({where: {id}})
-        }
-        else return "not found"
-       
+    // async updateEvent(id: number, event: updEventsDto): Promise<EventsEntity | string>{
+    //     const updateEvent = await this.eventsRepo.update(id, event)
+    //     if (updateEvent){
+    //     return await this.eventsRepo.findOne({where: {id}, relations: ["location"]})
+    //     }
+    //     else return "not found"
+    // }
+
+    // async updateEvent(id: number, event: updEventsDto){
+    //     await this.entityManager.transaction(async entityManager => {
+    //         const e = await this.eventsRepo.findOne({where: {id}, relations: ["location"]})
+    //         const location = {...event.location}
+    //         // e.location = location
+    //         e.location = {
+    //             id: id,
+    //             ...location
+    //         }
+    //         await entityManager.save(location)
+    //         await entityManager.save(event)
+    //         return this.eventsRepo.findOne({where: {id}, relations: ["location"]})
+    //     })
+    // }
+    // async updateEvent(id: number, event: updEventsDto): Promise<EventsEntity>{
+    //     const location = new LocationEntity({...event.location})
+    //     const e = {
+    //         ...event, 
+    //         location
+    //     }
+    //     await this.eventsRepo.update(id,e)
+    //     return await this.eventsRepo.findOne({where:{id}, relations: ["location"]})
+    // }
+
+    // async updateEvent(id: number, event: updEventsDto): Promise<EventsEntity>{
+    //     let l = new LocationEntity({...event.location})
+    //     const e = {
+    //         ...event, 
+    //         l
+    //     }
+    //     await this.eventsRepo.update(id,event)
+    //     return await this.eventsRepo.findOne({where:{id}, relations: ["location"]})
+    // }
+
+    async updateEvent(id: number, event: updEventsDto): Promise<EventsEntity>{
+        const f = await this.eventsRepo.findOne({where: {id}, relations: ["location"]})
+        return this.eventsRepo.save({id, ...event})
     }
+
 
     async deleteEvent(id: number): Promise<EventsEntity | string>   {
         const event = await this.eventsRepo.findOne({where: {id}})

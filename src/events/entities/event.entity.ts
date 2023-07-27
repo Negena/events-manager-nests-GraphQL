@@ -11,11 +11,11 @@ export class EventsEntity extends AbstractEntity<EventsEntity>{
     @Field(() => Int)
     id: number;
 
-    @Column({type: "date"})
+    @Column()
     @Field()
     startAt: string
 
-    @Column({type: "date"})
+    @Column()
     @Field()
     endAt: string
 

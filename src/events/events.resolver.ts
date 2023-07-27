@@ -35,7 +35,7 @@ export class EventsResolver {
   }
   
   @Mutation(() => Event)
-  async updateEvent(@Args("id") id: number, @Args('updateEventInput') updateEventInput: updEventsDto): Promise<EventsEntity | string> {
+  async updateEvent(@Args("id") id: number, @Args('updateEventInput') updateEventInput: updEventsDto){
     return await this.eventsService.updateEvent(id, updateEventInput);
   }
 

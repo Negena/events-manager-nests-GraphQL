@@ -7,6 +7,6 @@ import { LocationsService } from './locations.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([LocationEntity, EventsEntity])],
-  providers: [LocationsResolver, LocationsService],
+  providers: [LocationsResolver, LocationsService]
 })
 export class LocationsModule {}
