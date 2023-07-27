@@ -1,0 +1,69 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type LocationEntity {
+  id: Int!
+  country: String!
+  city: String!
+  address: String!
+  availability: Boolean!
+}
+
+type EventsEntity {
+  id: Int!
+  startAt: String!
+  endAt: String!
+  name: String!
+  description: String!
+  location: LocationEntity!
+}
+
+type Query {
+  events: [EventsEntity!]!
+  event(id: Int!): EventsEntity!
+  bylocation(location: String!): [EventsEntity!]!
+  bytime(from: String!, to: String!): [EventsEntity!]!
+  locations: [LocationEntity!]!
+  address(address: String!): [LocationEntity!]!
+  available: [LocationEntity!]!
+}
+
+type Mutation {
+  createEvent(createEventInput: EventsDto!): EventsEntity!
+  updateEvent(id: Float!, updateEventInput: updEventsDto!): EventsEntity!
+  removeEvent(id: Int!): EventsEntity!
+  createLocation(createLocationInput: LocationDto!): LocationEntity!
+  updateLocation(id: Float!, updateLocationInput: updLocationDto!): LocationEntity!
+  removeLocation(id: Int!): LocationEntity!
+}
+
+input EventsDto {
+  startAt: String!
+  endAt: String!
+  name: String!
+  description: String!
+  location: LocationDto!
+}
+
+input LocationDto {
+  country: String!
+  city: String!
+  address: String!
+  availability: Boolean!
+}
+
+input updEventsDto {
+  startAt: String!
+  endAt: String!
+  name: String!
+  description: String!
+  location: updLocationDto!
+}
+
+input updLocationDto {
+  country: String!
+  city: String!
+  address: String!
+  availability: Boolean!
+}
