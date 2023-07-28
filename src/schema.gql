@@ -24,18 +24,16 @@ type Query {
   event(id: Int!): EventsEntity!
   bylocation(location: String!): [EventsEntity!]!
   bytime(from: String!, to: String!): [EventsEntity!]!
-  locations: [LocationEntity!]!
-  address(address: String!): [LocationEntity!]!
-  available: [LocationEntity!]!
+  available: [EventsEntity!]!
+  address(address: String!): [EventsEntity!]!
+  locations: [EventsEntity!]!
 }
 
 type Mutation {
   createEvent(createEventInput: EventsDto!): EventsEntity!
   updateEvent(id: Float!, updateEventInput: updEventsDto!): EventsEntity!
   removeEvent(id: Int!): EventsEntity!
-  createLocation(createLocationInput: LocationDto!): LocationEntity!
-  updateLocation(id: Float!, updateLocationInput: updLocationDto!): LocationEntity!
-  removeLocation(id: Int!): LocationEntity!
+  removeByLocation(id: Int!): EventsEntity!
 }
 
 input EventsDto {

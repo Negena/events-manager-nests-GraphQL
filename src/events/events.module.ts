@@ -3,7 +3,7 @@ import { EventsService } from './events.service';
 import { EventsResolver } from './events.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsEntity } from './entities/event.entity';
-import { LocationEntity } from 'src/locations/entities/location.entity';
+import { LocationEntity } from './entities/location.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([EventsEntity, LocationEntity])],

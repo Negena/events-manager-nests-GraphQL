@@ -1,5 +1,5 @@
 import { AbstractEntity } from 'src/abstract.entity';
-import { LocationEntity } from 'src/locations/entities/location.entity';
+import { LocationEntity } from './location.entity';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany, ManyToMany, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 

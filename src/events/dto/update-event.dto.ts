@@ -1,14 +1,13 @@
 import { IsDate, IsNotEmpty, IsString, minLength } from "class-validator"
-import { LocationDto } from "src/locations/dto/create-location.input";
+import { LocationDto } from "src/events/dto/create-location.input";
 import { isDate } from "util/types";
 import { IsAlpha } from 'class-validator';
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { updLocationDto } from "src/locations/dto/update-location.dto";
+import { updLocationDto } from "./update-location.dto";
 
 @InputType()
 export class updEventsDto{
 
-    @IsAlpha()
     @IsNotEmpty()
     @IsString()
     @Field()

@@ -1,5 +1,5 @@
 import { IsDate, IsNotEmpty, IsString, minLength } from "class-validator"
-import { LocationDto } from "src/locations/dto/create-location.input";
+import { LocationDto } from "./create-location.input";
 import { isDate } from "util/types";
 import { IsAlpha } from 'class-validator';
 import { InputType, Int, Field } from '@nestjs/graphql';
