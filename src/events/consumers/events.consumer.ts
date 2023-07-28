@@ -10,9 +10,9 @@ export class EventsConsumer {
     @Process()
     async transcode(job: Job<unknown>) {
 
-        this.logger.log(`transcodeing msg: ${job.id}` )
+        this.logger.log(`msg: ${job.id}` )
         this.logger.debug("Date", job.data)
-        await new Promise<void>((resolve) => setTimeout(() => resolve(), 5000))
-        this.logger.log("transcoding is completed")
+        await new Promise<void>((resolve) => setTimeout(() => resolve(), 10000))
+        this.logger.log("request/response is completed")
     }
 }

@@ -70,8 +70,12 @@ export class EventsService {
             ...event,
             location
         })
-
-        return await this.entityManager.save(newEvent)
+        const res = await this.entityManager.save(newEvent)
+        
+        await this.transcodeQueue.add({
+            response: res
+        })
+        return res
     }
 
    
@@ -124,11 +128,6 @@ async getAllLocations(): Promise<EventsEntity[]>{
         })
     } 
 
-    async createLocation(location: LocationDto): Promise<LocationEntity>{
-        const newLocation = new LocationEntity(location)
-        return await this.entityManager.save(newLocation)
-    }
-
     async deleteLocation(id: number) : Promise<LocationEntity | string>{
         const del = await this.locationRepo.findOne({where: {id}})
         if (del) {
@@ -156,11 +155,5 @@ async getAllLocations(): Promise<EventsEntity[]>{
             return await event
         }
         return "not found"
-    }
-
-    async postEvent(){
-        await this.transcodeQueue.add({
-            response: "posts were added"
-        })
     }
 }
