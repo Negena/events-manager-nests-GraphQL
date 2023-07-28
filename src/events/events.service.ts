@@ -137,11 +137,6 @@ async getAllLocations(): Promise<EventsEntity[]>{
         return "not found"
     }
 
-    async updateLocation(id: number, location: updLocationDto) : Promise<LocationEntity> {
-        const updLocation = await this.locationRepo.update(id, location)
-        return await this.locationRepo.findOne({where: {id}})
-    }
-
     async deleteByLocation(id: number): Promise<EventsEntity | string>   {
         const event = await this.eventsRepo.findOne({
             relations: ["location"],
