@@ -13,6 +13,7 @@ export class EventsResolver {
 
   @Mutation(() => Event)
   createEvent(@Args('createEventInput') createEventInput: EventsDto) {
+   this.eventsService.transcode()
     return this.eventsService.createEvent(createEventInput);
 
   }

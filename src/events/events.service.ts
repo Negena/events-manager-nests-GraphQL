@@ -7,10 +7,15 @@ import { LocationEntity } from 'src/events/entities/location.entity';
 import { updEventsDto } from './dto/update-event.dto';
 import { LocationDto } from './dto/create-location.input';
 import { updLocationDto } from './dto/update-location.dto';
+import { InjectQueue } from '@nestjs/bull';
+import { TransCodeConsumer } from './transcode.consumer';
+import { transcode } from 'env';
+import { Queue } from 'bull';
 
 @Injectable()
 export class EventsService {
   constructor(
+      @InjectQueue(transcode) private readonly transcodeQueue:Queue,
     @InjectRepository(EventsEntity)  private readonly eventsRepo: Repository<EventsEntity>,
     @InjectRepository(LocationEntity) private readonly locationRepo: Repository<LocationEntity>,
     private readonly entityManager: EntityManager
@@ -57,7 +62,6 @@ export class EventsService {
     }
 
     async createEvent(event: EventsDto) : Promise<EventsEntity>{
-
         const location = await new LocationEntity({
            ...event.location
         })
@@ -152,5 +156,11 @@ async getAllLocations(): Promise<EventsEntity[]>{
             return await event
         }
         return "not found"
+    }
+
+    async transcode(){
+        await this.transcodeQueue.add({
+            response: "posts were added"
+        })
     }
 }

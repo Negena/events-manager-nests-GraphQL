@@ -7,20 +7,9 @@ import {TypeOrmModule} from "@nestjs/typeorm"
 import { EventsEntity } from './events/entities/event.entity';
 import { typeOrmConfig } from './config/typeorm.config';
 import {ConfigModule} from "@nestjs/config"
-import { BullModule } from '@nestjs/bull';
-import { transcode } from 'env';
 
 @Module({
   imports: [
-    // BullModule.forRoot({
-    //   redis: {
-    //     host: "localhost", 
-    //     port: 6379,
-    //   }
-    // }), 
-    // BullModule.registerQueue({
-    //   name: transcode
-    // }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
