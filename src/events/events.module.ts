@@ -6,7 +6,7 @@ import { EventsEntity } from './entities/event.entity';
 import { LocationEntity } from './entities/location.entity';
 import { BullModule } from '@nestjs/bull';
 import { transcode } from 'env';
-import { TransCodeConsumer } from './transcode.consumer';
+import { EventsConsumer } from './consumers/events.consumer';
 
 @Module({
   imports: [BullModule.forRoot({
@@ -19,6 +19,6 @@ import { TransCodeConsumer } from './transcode.consumer';
     name: transcode
   }),
     TypeOrmModule.forFeature([EventsEntity, LocationEntity])],
-  providers: [EventsResolver, EventsService, TransCodeConsumer]
+  providers: [EventsResolver, EventsService, EventsConsumer]
 })
 export class EventsModule {}

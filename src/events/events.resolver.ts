@@ -13,9 +13,8 @@ export class EventsResolver {
 
   @Mutation(() => Event)
   createEvent(@Args('createEventInput') createEventInput: EventsDto) {
-   this.eventsService.transcode()
+   this.eventsService.postEvent()
     return this.eventsService.createEvent(createEventInput);
-
   }
 
   @Query(() => [Event], { name: 'events' })

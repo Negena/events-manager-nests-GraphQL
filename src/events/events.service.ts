@@ -8,7 +8,7 @@ import { updEventsDto } from './dto/update-event.dto';
 import { LocationDto } from './dto/create-location.input';
 import { updLocationDto } from './dto/update-location.dto';
 import { InjectQueue } from '@nestjs/bull';
-import { TransCodeConsumer } from './transcode.consumer';
+import { EventsConsumer } from './consumers/events.consumer';
 import { transcode } from 'env';
 import { Queue } from 'bull';
 
@@ -158,7 +158,7 @@ async getAllLocations(): Promise<EventsEntity[]>{
         return "not found"
     }
 
-    async transcode(){
+    async postEvent(){
         await this.transcodeQueue.add({
             response: "posts were added"
         })
